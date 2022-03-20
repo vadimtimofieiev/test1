@@ -156,7 +156,10 @@ function result(int $id): array
         $average = getAverage($grades);
         return getResultByFormat($student, $grades,$average,$board);
     }
-    return array();
+    return array(
+        'header' => 'Content-Type: text/html',
+        'content' => 'no results'
+    );
 }
 if(isset($_GET['student']) and !empty($_GET['student'])){
     $result = result($_GET['student']);
