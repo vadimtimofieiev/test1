@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Nginx.Dockerfile
+    image: nginx
+    ports:
+      - 8002:80
+    links:
+      - fpm
+    volumes:
+      - ./:/var/www/shool_board_test
+  fpm:
+    build:
+      context: .
+      dockerfile: docker/Fpm.Dockerfile
+    volumes:
+      -   ./:/var/www/shool_board_test
